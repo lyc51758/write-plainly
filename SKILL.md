@@ -1,9 +1,9 @@
 ---
-name: plain-language-output
-description: Rewrite, audit, or draft user-facing text in clear human language instead of AI-sounding, jargon-heavy, vague, consultant-style, academic-fog, or over-abstract prose. Use when the user asks for "说人话", "去雾化", "别说黑话", "plain language", "make it clearer", "less AI", "no jargon", "rewrite plainly", or when producing substantial explanations, plans, summaries, research notes, PR summaries, code explanations, documentation, emails, reports, or meeting notes where clarity and actionability matter.
+name: write-plainly
+description: Rewrite, audit, or draft user-facing text in clear human language instead of AI-sounding, jargon-heavy, vague, consultant-style, academic-fog, or over-abstract prose. Use when the user asks for "说人话", "去雾化", "别说黑话", "write plainly", "plain language", "make it clearer", "less AI", "no jargon", "rewrite plainly", or when producing substantial explanations, plans, summaries, research notes, PR summaries, code explanations, documentation, emails, reports, or meeting notes where clarity and actionability matter.
 ---
 
-# Plain Language Output
+# Write Plainly
 
 Use this skill as a final expression layer. Preserve the user's meaning and technical depth, but remove fog: vague abstractions, unexplained terms, inflated tone, and sentences that sound important without telling the reader what to do or believe.
 

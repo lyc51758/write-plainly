@@ -1,4 +1,4 @@
 interface:
-  display_name: "Plain Language Output"
+  display_name: "Write Plainly"
   short_description: "Rewrite AI-style text into clear, concrete human language."
-  default_prompt: "Use $plain-language-output to make this answer clear, concrete, and easy to act on."
+  default_prompt: "Use $write-plainly to make this answer clear, concrete, and easy to act on."

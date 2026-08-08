@@ -1,4 +1,4 @@
-# Plain Language Output Skill
+# Write Plainly
 
 ## 中文说明
 
@@ -12,7 +12,7 @@ AI 给你生成一段回答，听起来很专业，里面全是“闭环”“�
 
 这就是这个 skill 要解决的问题。
 
-**Plain Language Output** 是一个给 Codex / Claude Code 用的写作 skill。它会把 AI 腔、论文腔、咨询腔、技术黑话，改成更清楚、更具体、更像人说的话。
+**Write Plainly** 是一个给 Codex / Claude Code 用的写作 skill。它会把 AI 腔、论文腔、咨询腔、技术黑话，改成更清楚、更具体、更像人说的话。
 
 它不会把内容改浅。它要做的是：保留技术细节，但让读者看得懂。
 
@@ -70,7 +70,7 @@ AI 给你生成一段回答，听起来很专业，里面全是“闭环”“�
 把这个仓库放到 Codex 的 skills 目录下：
 
 ```text
-~/.codex/skills/plain-language-output/
+~/.codex/skills/write-plainly/
 ```
 
 目录里应至少包含：
@@ -83,13 +83,13 @@ agents/openai.yaml
 使用时可以说：
 
 ```text
-Use $plain-language-output to rewrite this in clear human language.
+Use $write-plainly to rewrite this in clear human language.
 ```
 
 或者中文：
 
 ```text
-用 $plain-language-output 去雾化这段话，不要丢技术细节。
+用 $write-plainly 去雾化这段话，不要丢技术细节。
 ```
 
 ### 安装到 Claude Code
@@ -97,13 +97,13 @@ Use $plain-language-output to rewrite this in clear human language.
 把这个仓库放到 Claude Code 的 skills 目录下：
 
 ```text
-~/.claude/skills/plain-language-output/
+~/.claude/skills/write-plainly/
 ```
 
 然后使用：
 
 ```text
-Use $plain-language-output to defog this draft without losing technical detail.
+Use $write-plainly to defog this draft without losing technical detail.
 ```
 
 ### 这不是什么？
@@ -120,7 +120,7 @@ Have you ever read a document where every word is familiar, but the point is sti
 
 A manager sends a plan full of abstract phrases. An AI writes an answer that sounds professional but hides the actual decision. A research note contains formulas, method names, and project labels, but the reader still cannot tell what matters or what to do next.
 
-**Plain Language Output** is a Codex / Claude Code skill for rewriting AI-style, jargon-heavy, vague, consultant-style, or over-abstract text into clear human language.
+**Write Plainly** is a Codex / Claude Code skill for rewriting AI-style, jargon-heavy, vague, consultant-style, or over-abstract text into clear human language.
 
 It does not dumb things down. It keeps the technical content and makes the claim, reason, risk, and next step easier to see.
 
@@ -166,13 +166,13 @@ Clearer:
 For Codex:
 
 ```text
-~/.codex/skills/plain-language-output/
+~/.codex/skills/write-plainly/
 ```
 
 For Claude Code:
 
 ```text
-~/.claude/skills/plain-language-output/
+~/.claude/skills/write-plainly/
 ```
 
 The skill directory should contain:
@@ -185,7 +185,7 @@ agents/openai.yaml
 Example prompt:
 
 ```text
-Use $plain-language-output to rewrite this in clear human language without losing technical detail.
+Use $write-plainly to rewrite this in clear human language without losing technical detail.
 ```
 
 ### Not A Summarizer
