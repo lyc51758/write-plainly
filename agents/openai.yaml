@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plain Language Output"
+  short_description: "Rewrite AI-style text into clear, concrete human language."
+  default_prompt: "Use $plain-language-output to make this answer clear, concrete, and easy to act on."
