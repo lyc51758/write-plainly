@@ -1,11 +1,19 @@
 ---
 name: write-plainly
-description: Rewrite, audit, or draft user-facing text in clear human language instead of AI-sounding, jargon-heavy, vague, consultant-style, academic-fog, or over-abstract prose. Use when the user asks for "说人话", "去雾化", "别说黑话", "write plainly", "plain language", "make it clearer", "less AI", "no jargon", "rewrite plainly", or when producing substantial explanations, plans, summaries, research notes, PR summaries, code explanations, documentation, emails, reports, or meeting notes where clarity and actionability matter.
+description: Rewrite, audit, or draft text in clear human language only when the user explicitly asks for "说人话", "去雾化", "别说黑话", "write plainly", "plain language", "make it clearer", "less AI", "no jargon", or "rewrite plainly", or when the requested deliverable is a standalone human-facing artifact whose main goal is readable wording, such as a README, email, report, document, speech, research note, or meeting note. Do not use for ordinary conversation, quick explanations, coding updates, status reports, code review findings, or general answers merely because they are long.
 ---
 
 # Write Plainly
 
 Use this skill as a final expression layer. Preserve the user's meaning and technical depth, but remove fog: vague abstractions, unexplained terms, inflated tone, and sentences that sound important without telling the reader what to do or believe.
+
+## Activation Boundary
+
+Use this skill only when clarity itself is the task: a rewrite, an audit of unclear writing, or a human-facing text artifact whose wording is part of the deliverable.
+
+Do not use this skill for normal chat, short Q&A, routine explanations, coding progress updates, status reports, code review findings, or general reasoning answers. In those cases, answer concisely in the normal Codex voice without loading this skill.
+
+If the user says "这次不要用 skill" or "直接回答", do not use this skill unless a higher-priority instruction requires it.
 
 ## Default Standard
 

@@ -21,7 +21,7 @@ AI 给你生成一段回答，听起来很专业，里面全是“闭环”“�
 - 看起来很专业，但读不出结论的研究笔记
 - 老板、同事、AI 发来的晦涩文档
 - 写得像汇报材料，但没人知道下一步是什么的计划
-- PR 总结、代码解释、会议纪要、论文想法
+- 明确要求重写、或需要对外发布的 PR 总结、代码解释、会议纪要、论文想法
 - 中文技术写作里常见的“云里雾里”
 - AI 生成后需要再过一遍的人话版草稿
 
@@ -45,13 +45,13 @@ AI 给你生成一段回答，听起来很专业，里面全是“闭环”“�
 
 改写后：
 
-> 历史回测和真实打榜要用不同的搜索规则。
->
-> 回测是在重放过去的问题，所以 agent 只能看目标日期以前的信息。这样做是为了防止它偷看未来答案。
->
-> 真实打榜是在预测未来，所以 agent 应该能使用当前已经公开的信息。如果把回测里的时间过滤规则直接套到真实打榜，agent 会查不到本来允许使用的信息。
->
-> 打榜也不要只做一次性优化。每项投入最好能留下可复用的东西，比如干净数据集、评测脚本、固定 benchmark、论文图表或可复用模块。
+历史回测和真实打榜要用不同的搜索规则。
+
+回测是在重放过去的问题，所以 agent 只能看目标日期以前的信息。这样做是为了防止它偷看未来答案。
+
+真实打榜是在预测未来，所以 agent 应该能使用当前已经公开的信息。如果把回测里的时间过滤规则直接套到真实打榜，agent 会查不到本来允许使用的信息。
+
+打榜也不要只做一次性优化。每项投入最好能留下可复用的东西，比如干净数据集、评测脚本、固定 benchmark、论文图表或可复用模块。
 
 这就是这个 skill 的目标：
 
@@ -64,6 +64,7 @@ AI 给你生成一段回答，听起来很专业，里面全是“闭环”“�
 3. **展开隐藏工作流。** 如果一个词藏着流程、角色、时间边界、数据边界、评测规则或失败后果，就把它讲出来。
 4. **保留信息出场顺序。** 不要把后文才定义的框架提前塞进开头，除非用户明确要重构。
 5. **删掉给机器看的元数据。** 面向人看的改写稿默认不要 YAML frontmatter、tags、aliases、related links。
+6. **不要在普通聊天里乱触发。** 只有当用户明确要求改写、去雾化，或者任务本身是在写一份给人看的正式文本时，才应该加载这个 skill。
 
 ### 安装到 Codex
 
@@ -112,6 +113,40 @@ Use $write-plainly to defog this draft without losing technical detail.
 
 这也不是“把技术内容翻译给小学生”。技术术语可以保留，但必须解释清楚，并且要和具体决策、实验、风险或行动连起来。
 
+## 版本迭代记录
+
+这个区域专门记录触发规则和写作规则的变化，方便后来的人判断自己应该用哪一版。
+
+### v1 - 收窄触发范围
+
+日期：2026-08-13
+
+v1 解决的是“skill 被调用得太频繁”的问题。
+
+v0 的触发描述太宽。它不仅会在用户明确要求“说人话”“去雾化”时触发，还可能因为一次回答比较长、一次解释比较完整、一次计划或总结比较正式而被自动加载。这样会带来两个问题：普通聊天变慢；一些本来只需要直接回答的问题，被套上了不必要的改写流程。
+
+v1 把边界改清楚了：
+
+- 用户明确要求“说人话”“去雾化”“别说黑话”“write plainly”“make it clearer”等，才触发。
+- 任务本身是 README、邮件、报告、文档、演讲稿、研究 note、会议纪要这类正式文本，才触发。
+- 普通聊天、短问答、日常解释、代码进度更新、状态汇报、代码 review、一般长回答，不因为“写得比较长”就触发。
+
+v1 没有改变去雾化本身的标准。保留技术细节、解释术语、展开隐藏工作流、保留信息出场顺序、删除机器元数据，这些规则仍然保留。
+
+### v0 - 初始公开版
+
+日期：2026-08-08
+
+v0 建立了这个 skill 的主体规则：
+
+- 去掉 AI 腔、论文腔、咨询腔和空泛技术黑话。
+- 不把技术内容改浅，而是把判断、理由、风险和下一步讲清楚。
+- 保留信息出场顺序，不把后文才定义的框架提前塞进开头。
+- 识别并展开隐藏工作流，比如 `live`、`backtest`、`search policy`、`dual-use` 这类词背后的流程、边界和失败后果。
+- 面向人看的改写稿默认删除 YAML frontmatter、tags、aliases、related links 等机器元数据。
+
+v0 的问题是触发范围太宽。这个问题在 v1 中被修正。
+
 ---
 
 ## English
@@ -128,8 +163,7 @@ It does not dumb things down. It keeps the technical content and makes the claim
 
 - research notes
 - technical plans
-- code explanations
-- PR summaries
+- code explanations and PR summaries when explicitly requested as rewrites or public-facing text
 - meeting notes
 - AI-generated drafts
 - Chinese technical writing that sounds too much like proposal prose
@@ -144,6 +178,7 @@ This skill rewrites text so that:
 - hidden workflow assumptions are expanded
 - machine metadata is removed from human-facing drafts
 - the original information order is preserved unless restructuring is requested
+- the skill is not triggered for ordinary chat merely because the answer is long
 
 ### Example
 
@@ -153,13 +188,13 @@ Original:
 
 Clearer:
 
-> Historical replay and real prediction need different search rules.
->
-> In historical replay, the agent can only use information that was public before the target date. This prevents it from accidentally seeing future answers.
->
-> In real prediction, the agent should be allowed to use information that is public now. If we copy the replay filter into the live system, the agent will miss information it is allowed to use.
->
-> Leaderboard work should also leave reusable artifacts: clean datasets, evaluation scripts, fixed benchmarks, paper figures, or reusable modules.
+Historical replay and real prediction need different search rules.
+
+In historical replay, the agent can only use information that was public before the target date. This prevents it from accidentally seeing future answers.
+
+In real prediction, the agent should be allowed to use information that is public now. If we copy the replay filter into the live system, the agent will miss information it is allowed to use.
+
+Leaderboard work should also leave reusable artifacts: clean datasets, evaluation scripts, fixed benchmarks, paper figures, or reusable modules.
 
 ### Installation
 
@@ -193,6 +228,26 @@ Use $write-plainly to rewrite this in clear human language without losing techni
 This skill is not meant to remove important claims just to make text shorter.
 
 It is also not a beginner-level translator. Technical terms should stay when they matter, but they must be explained and tied to a concrete decision, experiment, risk, or action.
+
+## Version History
+
+### v1 - Narrower Activation
+
+Date: 2026-08-13
+
+v1 fixes over-triggering. The skill should now load only when the user explicitly asks for plain-language rewriting or when the deliverable is a standalone human-facing text artifact such as a README, email, report, document, speech, research note, or meeting note.
+
+It should not load for ordinary chat, quick explanations, coding progress updates, status reports, code review findings, or general answers merely because they are long.
+
+The rewriting rules from v0 remain: preserve technical detail, explain necessary terms, expand hidden workflows, keep the original information order unless restructuring is requested, and remove machine metadata from human-facing drafts.
+
+### v0 - Initial Public Version
+
+Date: 2026-08-08
+
+v0 introduced the core plain-language rules: remove vague AI-style phrasing, keep the technical content, explain necessary terms, expand compressed workflow language, preserve information order, and omit machine-facing metadata from human-readable rewrites.
+
+Its trigger description was too broad because it included substantial explanations, plans, summaries, code explanations, and PR summaries. v1 narrows that boundary.
 
 ## License
 
