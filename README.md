@@ -107,15 +107,7 @@ Use $write-plainly to rewrite this in clear human language.
 Use $write-plainly to defog this draft without losing technical detail.
 ```
 
-### 这不是什么？
-
-这不是摘要器。它不应该为了变短而删掉重要判断。
-
-这也不是“把技术内容翻译给小学生”。技术术语可以保留，但必须解释清楚，并且要和具体决策、实验、风险或行动连起来。
-
 ## 版本迭代记录
-
-这个区域专门记录触发规则和写作规则的变化，方便后来的人判断自己应该用哪一版。
 
 ### v1 - 收窄触发范围
 
@@ -222,12 +214,6 @@ Example prompt:
 ```text
 Use $write-plainly to rewrite this in clear human language without losing technical detail.
 ```
-
-### Not A Summarizer
-
-This skill is not meant to remove important claims just to make text shorter.
-
-It is also not a beginner-level translator. Technical terms should stay when they matter, but they must be explained and tied to a concrete decision, experiment, risk, or action.
 
 ## Version History
 
